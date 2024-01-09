@@ -1,6 +1,15 @@
 # portfolio
 
-A new Flutter project.
+My Portfolio Application
+![](./readme_img/portfolio_main.jpg)
+![](./readme_img/portfolio_work.jpg)
+![](./readme_img/portfolio_contact.jpg)
+![](./readme_img/portfolio_lightmode.jpg)
+![](./readme_img/portfolio_darkmode.jpg)
+
+[Download](https://drive.google.com/file/d/1_utrGQF3W2D5uwD7_aqMBOcby6K24fnO/view)
+
+
 
 ## Getting Started
 
