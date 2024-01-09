@@ -22,8 +22,8 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Light Mode'),
-            SizedBox(width: 15),
+            const Text('Light Mode'),
+            const SizedBox(width: 15),
             Switch(
               value: isSwitched,
               onChanged: (value) {
@@ -33,8 +33,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 });
               },
             ),
-            SizedBox(width: 15),
-            Text('Dark Mode'),
+            const SizedBox(width: 15),
+            const Text('Dark Mode'),
           ],
         ),
       ),

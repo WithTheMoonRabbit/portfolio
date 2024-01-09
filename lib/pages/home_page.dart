@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:lottie/lottie.dart';
 import 'package:portfolio/pages/work_page.dart';
 import 'package:portfolio/pages/contact_page.dart';
 import 'package:portfolio/pages/settings_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -84,8 +83,11 @@ class HomeWidget extends StatelessWidget {
                 child: Card(
                   color: Colors.white,
                   elevation: 30,
-                  child: Lottie.network(
-                      'https://lottie.host/facfed80-6118-4f19-aa6c-2596ae785519/YCidebGlO2.json'),
+                  child: Image.asset(
+                    'assets/images/logo_img/main_logo.gif',
+                    width: 250,
+                    height: 250,
+                  ),
                 ),
               ),
               const Padding(
