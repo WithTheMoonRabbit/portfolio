@@ -102,9 +102,9 @@ flutter:
     - assets/images/work_img/2.png
     - assets/images/work_img/3.png
     - assets/images/logo_img/notion_logo.png
-    - assets/images/logo_img/github_logo.gif
-    - assets/images/logo_img/main_logo.gif
-    - assets/images/logo_img/email_logo.gif
+    - assets/images/logo_img/github_logo.json
+    - assets/images/logo_img/main_logo.json
+    - assets/images/logo_img/email_logo.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

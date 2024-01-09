@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:lottie/lottie.dart';
 import 'package:portfolio/pages/work_page.dart';
 import 'package:portfolio/pages/contact_page.dart';
 import 'package:portfolio/pages/settings_page.dart';
@@ -83,11 +84,7 @@ class HomeWidget extends StatelessWidget {
                 child: Card(
                   color: Colors.white,
                   elevation: 30,
-                  child: Image.asset(
-                    'assets/images/logo_img/main_logo.gif',
-                    width: 250,
-                    height: 250,
-                  ),
+                  child: Lottie.asset('assets/images/logo_img/main_logo.json'),
                 ),
               ),
               const Padding(

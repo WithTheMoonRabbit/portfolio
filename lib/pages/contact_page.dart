@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class ContactPage extends StatelessWidget {
           height: 180,
           url: 'https://github.com/WithTheMoonRabbit',
           text: 'Github',
-          child: Image.asset('assets/images/logo_img/github_logo.gif'),
+          child: Lottie.asset('assets/images/logo_img/github_logo.json'),
         ),
         const SizedBox(height: 20),
         CustomContainer(
@@ -27,7 +28,7 @@ class ContactPage extends StatelessWidget {
           height: 180,
           url: 'mailto:201844087@itc.ac.kr',
           text: 'Email',
-          child: Image.asset('assets/images/logo_img/email_logo.gif'),
+          child: Lottie.asset('assets/images/logo_img/email_logo.json'),
         )
       ],
     );
