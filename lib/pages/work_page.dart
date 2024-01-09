@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/work_tile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const _duration = Duration(milliseconds: 500);
 
@@ -11,23 +12,13 @@ class WorkPage extends StatefulWidget {
 }
 
 class _WorkPageState extends State<WorkPage> {
-  final _pageWorkController = PageController(
-    viewportFraction: 0.35,
-  );
-
+  final _pageWorkController = PageController(viewportFraction: 0.35);
   double _currentPage = 0.0;
-
-  void _workScrollListener() {
-    setState(() {
-      _currentPage = _pageWorkController.page!;
-    });
-  }
-
 
   @override
   void initState() {
-    _pageWorkController.addListener(_workScrollListener);
     super.initState();
+    _pageWorkController.addListener(_workScrollListener);
   }
 
   @override
@@ -37,15 +28,18 @@ class _WorkPageState extends State<WorkPage> {
     super.dispose();
   }
 
+  void _workScrollListener() {
+    setState(() {
+      _currentPage = _pageWorkController.page!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       body: Stack(
         children: [
           Positioned(
@@ -54,52 +48,46 @@ class _WorkPageState extends State<WorkPage> {
             bottom: -size.height * 0.22,
             height: size.height * 0.3,
             child: const DecoratedBox(
-              decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                BoxShadow(
-                  color: Colors.brown,
-                  blurRadius: 90,
-                  spreadRadius: 45,
-                ),
-              ]),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [BoxShadow(color: Colors.brown, blurRadius: 90, spreadRadius: 45)],
+              ),
             ),
           ),
           Transform.scale(
             scale: 1.6,
             alignment: Alignment.bottomCenter,
             child: PageView.builder(
-                controller: _pageWorkController,
-                scrollDirection: Axis.vertical,
-                itemCount: works.length + 1,
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return const SizedBox.shrink();
-                  }
-                  final work = works[index - 1];
-                  final result = _currentPage - index + 1;
-                  final value = -0.4 * result + 1;
-                  final opacity = value.clamp(0.0, 1.0);
+              controller: _pageWorkController,
+              scrollDirection: Axis.vertical,
+              itemCount: works.length + 1,
+              itemBuilder: (context, index) {
+                if (index == 0) return const SizedBox.shrink();
 
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Transform(
-                      alignment: Alignment.bottomCenter,
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.001)
-                        ..translate(
-                          0.0,
-                          size.height / 2.6 * (1 - value).abs(),
-                        )
-                        ..scale(value),
-                      child: Opacity(
-                        opacity: opacity,
-                        child: Image.asset(
-                          work.image,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
+                final work = works[index - 1];
+                final result = _currentPage - index + 1;
+                final value = -0.4 * result + 1;
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Transform(
+                    alignment: Alignment.bottomCenter,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..translate(0.0, size.height / 2.6 * (1 - value).abs())
+                      ..scale(value),
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (!await launchUrl(Uri.parse(work.url))) {
+                          throw Exception('Could not launch $work.url');
+                        }
+                      },
+                      child: Image.asset(work.image, fit: BoxFit.fitHeight),
                     ),
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
           ),
           Positioned(
             left: 0,
@@ -110,14 +98,16 @@ class _WorkPageState extends State<WorkPage> {
               children: [
                 AnimatedSwitcher(
                   duration: _duration,
-                  child: _currentPage.toInt() < works.length ? Text(
+                  child: _currentPage.toInt() < works.length
+                      ? Text(
                     works[_currentPage.toInt()].name,
                     style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.italic,
                     ),
-                  ) : null,
+                  )
+                      : null,
                 ),
               ],
             ),

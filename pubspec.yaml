@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.3.9
   google_nav_bar: ^5.0.6
+  url_launcher: ^6.2.2
+  lottie: ^2.7.0
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
@@ -56,10 +59,10 @@ flutter_native_splash:
   web : true
 
   color: "#FFFFFF"
-  image: assets/images/portfolio logo.png
+  image: assets/images/portfolio_logo.png
 
   android_12:
-    image: assets/images/portfolio logo.png
+    image: assets/images/portfolio_logo.png
     color: "#FFFFFF"
 
 # For information on the generic Dart part of this file, see the
@@ -78,6 +81,7 @@ flutter:
     - assets/images/work_img/1.png
     - assets/images/work_img/2.png
     - assets/images/work_img/3.png
+    - assets/images/notion_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

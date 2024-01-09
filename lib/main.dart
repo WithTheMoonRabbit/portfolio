@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/pages/work_page.dart';
-import 'package:portfolio/themes/light_mode.dart';
+import 'package:portfolio/themes/theme.dart';
 
 import 'package:portfolio/pages/home_page.dart';
 import 'package:portfolio/pages/contact_page.dart';
 import 'package:portfolio/pages/settings_page.dart';
-import 'package:portfolio/pages/work_page.dart';
+import 'package:portfolio/themes/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,16 +25,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightMode,
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      darkTheme: darkMode,
       home: const HomePage(),
       routes: {
         '/home_page' : (context) => const HomePage(),
         '/contact_page' : (context) => const ContactPage(),
         '/work_page' : (context) => const WorkPage(),
         '/settings_page' : (context) => const SettingsPage(),
-
-        '/work_stack_list' : (context) => const WorkPage(),
-
       },
     );
   }
